@@ -1,0 +1,151 @@
+************************
+Number of groups: 50900
+Number of bert features: 768
+Number of names features: 55
+Number of prediction classes: 2
+3positives: 12291
+3negatives: 6699
+4to10positives: 11882
+4to10negatives: 12107
+above10positives: 1277
+above10negatives: 6644
+***********************
+GAT3NamesLSTM(
+  (conv1): GATConv(
+    (fc): Linear(in_features=823, out_features=13168, bias=False)
+    (feat_drop): Dropout(p=0.2, inplace=False)
+    (attn_drop): Dropout(p=0.2, inplace=False)
+    (leaky_relu): LeakyReLU(negative_slope=0.2)
+  )
+  (conv2): GATConv(
+    (fc): Linear(in_features=823, out_features=13168, bias=False)
+    (feat_drop): Dropout(p=0.2, inplace=False)
+    (attn_drop): Dropout(p=0.2, inplace=False)
+    (leaky_relu): LeakyReLU(negative_slope=0.2)
+  )
+  (conv3): GATConv(
+    (fc): Linear(in_features=823, out_features=13168, bias=False)
+    (feat_drop): Dropout(p=0.2, inplace=False)
+    (attn_drop): Dropout(p=0.2, inplace=False)
+    (leaky_relu): LeakyReLU(negative_slope=0.2)
+  )
+  (global_attention0): GlobalAttentionPooling(
+    (gate_nn): Linear(in_features=823, out_features=1, bias=True)
+  )
+  (global_attention1): GlobalAttentionPooling(
+    (gate_nn): Linear(in_features=823, out_features=1, bias=True)
+  )
+  (global_attention2): GlobalAttentionPooling(
+    (gate_nn): Linear(in_features=823, out_features=1, bias=True)
+  )
+  (global_attention3): GlobalAttentionPooling(
+    (gate_nn): Linear(in_features=823, out_features=1, bias=True)
+  )
+  (lstm): LSTM(823, 823, num_layers=2)
+  (classifier): Linear(in_features=823, out_features=1, bias=True)
+)
+AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0.01
+)
+batch accumulation: 1
+batch size: 64
+EPOCH 001 -> Loss[Train:0.5799; Valid:0.4770] - Accuracy[Train:67.3150; Valid:76.1984]
+EPOCH 002 -> Loss[Train:0.4429; Valid:0.4368] - Accuracy[Train:78.7099; Valid:78.9391]
+EPOCH 003 -> Loss[Train:0.4212; Valid:0.4131] - Accuracy[Train:80.1015; Valid:80.4028]
+EPOCH 004 -> Loss[Train:0.4070; Valid:0.4072] - Accuracy[Train:80.9168; Valid:80.7957]
+EPOCH 005 -> Loss[Train:0.3939; Valid:0.4101] - Accuracy[Train:81.6241; Valid:80.7466]
+EPOCH 006 -> Loss[Train:0.3831; Valid:0.4041] - Accuracy[Train:82.5573; Valid:81.4342]
+EPOCH 007 -> Loss[Train:0.3714; Valid:0.3880] - Accuracy[Train:82.9339; Valid:82.0727]
+EPOCH 008 -> Loss[Train:0.3657; Valid:0.3809] - Accuracy[Train:83.3464; Valid:82.7407]
+EPOCH 009 -> Loss[Train:0.3589; Valid:0.3747] - Accuracy[Train:83.7132; Valid:82.7800]
+EPOCH 010 -> Loss[Train:0.3520; Valid:0.3929] - Accuracy[Train:84.0733; Valid:82.1022]
+EPOCH 011 -> Loss[Train:0.3473; Valid:0.3843] - Accuracy[Train:84.2960; Valid:82.8880]
+EPOCH 012 -> Loss[Train:0.3419; Valid:0.4021] - Accuracy[Train:84.6824; Valid:81.8566]
+EPOCH 013 -> Loss[Train:0.3388; Valid:0.3769] - Accuracy[Train:84.6758; Valid:83.1238]
+EPOCH 014 -> Loss[Train:0.3307; Valid:0.3774] - Accuracy[Train:85.0720; Valid:83.3497]
+EPOCH 015 -> Loss[Train:0.3251; Valid:0.3793] - Accuracy[Train:85.5861; Valid:83.5363]
+EPOCH 016 -> Loss[Train:0.3223; Valid:0.3795] - Accuracy[Train:85.5632; Valid:83.4479]
+EPOCH 017 -> Loss[Train:0.3144; Valid:0.3957] - Accuracy[Train:86.0707; Valid:83.0943]
+EPOCH 018 -> Loss[Train:0.3091; Valid:0.3771] - Accuracy[Train:86.4211; Valid:83.9096]
+EPOCH 019 -> Loss[Train:0.3029; Valid:0.3805] - Accuracy[Train:86.6470; Valid:83.8605]
+EPOCH 020 -> Loss[Train:0.2974; Valid:0.3944] - Accuracy[Train:86.9777; Valid:83.2318]
+EPOCH 021 -> Loss[Train:0.2944; Valid:0.3828] - Accuracy[Train:87.0661; Valid:83.9784]
+EPOCH 022 -> Loss[Train:0.2899; Valid:0.3871] - Accuracy[Train:87.2561; Valid:84.1061]
+EPOCH 023 -> Loss[Train:0.2808; Valid:0.3805] - Accuracy[Train:87.8291; Valid:84.0766]
+EPOCH 024 -> Loss[Train:0.2752; Valid:0.3965] - Accuracy[Train:88.1041; Valid:83.9096]
+EPOCH 025 -> Loss[Train:0.2704; Valid:0.3754] - Accuracy[Train:88.2613; Valid:84.4794]
+EPOCH 026 -> Loss[Train:0.2636; Valid:0.3696] - Accuracy[Train:88.6640; Valid:84.9214]
+EPOCH 027 -> Loss[Train:0.2551; Valid:0.4208] - Accuracy[Train:89.1290; Valid:83.1139]
+EPOCH 028 -> Loss[Train:0.2511; Valid:0.3773] - Accuracy[Train:89.3157; Valid:84.5874]
+EPOCH 029 -> Loss[Train:0.2460; Valid:0.3962] - Accuracy[Train:89.4401; Valid:84.8330]
+EPOCH 030 -> Loss[Train:0.2359; Valid:0.3664] - Accuracy[Train:90.1113; Valid:85.4420]
+EPOCH 031 -> Loss[Train:0.2294; Valid:0.3570] - Accuracy[Train:90.2554; Valid:85.6385]
+EPOCH 032 -> Loss[Train:0.2257; Valid:0.3891] - Accuracy[Train:90.5861; Valid:85.3635]
+EPOCH 033 -> Loss[Train:0.2187; Valid:0.4220] - Accuracy[Train:90.7531; Valid:84.8134]
+EPOCH 034 -> Loss[Train:0.2113; Valid:0.3761] - Accuracy[Train:91.0052; Valid:85.4912]
+EPOCH 035 -> Loss[Train:0.2051; Valid:0.3904] - Accuracy[Train:91.3261; Valid:85.2849]
+EPOCH 036 -> Loss[Train:0.1971; Valid:0.4344] - Accuracy[Train:91.8304; Valid:85.2358]
+EPOCH 037 -> Loss[Train:0.1953; Valid:0.4399] - Accuracy[Train:91.7092; Valid:85.0884]
+EPOCH 038 -> Loss[Train:0.1915; Valid:0.4149] - Accuracy[Train:92.0072; Valid:85.4813]
+EPOCH 039 -> Loss[Train:0.1744; Valid:0.3942] - Accuracy[Train:92.6850; Valid:85.0000]
+EPOCH 040 -> Loss[Train:0.1765; Valid:0.4277] - Accuracy[Train:92.5246; Valid:84.8723]
+EPOCH 041 -> Loss[Train:0.1831; Valid:0.4400] - Accuracy[Train:92.2659; Valid:83.2024]
+EPOCH 042 -> Loss[Train:0.1824; Valid:0.3948] - Accuracy[Train:92.3084; Valid:84.9705]
+EPOCH 043 -> Loss[Train:0.1911; Valid:0.3658] - Accuracy[Train:91.7649; Valid:84.7446]
+EPOCH 044 -> Loss[Train:0.1668; Valid:0.4478] - Accuracy[Train:93.1794; Valid:83.5953]
+EPOCH 045 -> Loss[Train:0.1711; Valid:0.4469] - Accuracy[Train:92.7472; Valid:84.7642]
+EPOCH 046 -> Loss[Train:0.1601; Valid:0.4547] - Accuracy[Train:93.2449; Valid:82.9568]
+EPOCH 047 -> Loss[Train:0.1584; Valid:0.4595] - Accuracy[Train:93.3432; Valid:83.6444]
+EPOCH 048 -> Loss[Train:0.1535; Valid:0.5011] - Accuracy[Train:93.4741; Valid:84.3026]
+EPOCH 049 -> Loss[Train:0.1443; Valid:0.5613] - Accuracy[Train:93.9587; Valid:81.4735]
+EPOCH 050 -> Loss[Train:0.1418; Valid:0.5292] - Accuracy[Train:94.0439; Valid:83.7230]
+*******global*******
+Accuracy (A): 0.8510805368423462
+Balanced Accuracy (BA): 0.8505204319953918
+True Positive Rate (TPR) - Recall: 0.893716037273407
+True Negative Rate (TNR): 0.8073248267173767
+False Negative Rate (FNR): 0.10628394037485123
+False Positive Rate (FPR): 0.1926751583814621
+Precision: 0.8263988494873047
+F1 Score: 0.8587402105331421
+***************************
+*******3*******
+Accuracy (A): 0.8272251486778259
+Balanced Accuracy (BA): 0.7857024669647217
+True Positive Rate (TPR) - Recall: 0.9286004304885864
+True Negative Rate (TNR): 0.6428044438362122
+False Negative Rate (FNR): 0.07139959186315536
+False Positive Rate (FPR): 0.35719558596611023
+Precision: 0.8254597783088684
+F1 Score: 0.873997688293457
+***************************
+*******4to10*******
+Accuracy (A): 0.8387978076934814
+Balanced Accuracy (BA): 0.838323712348938
+True Positive Rate (TPR) - Recall: 0.8672456741333008
+True Negative Rate (TNR): 0.8094016909599304
+False Negative Rate (FNR): 0.1327543407678604
+False Positive Rate (FPR): 0.1905982941389084
+Precision: 0.8246166110038757
+F1 Score: 0.8453940749168396
+***************************
+*******above10*******
+Accuracy (A): 0.9444444179534912
+Balanced Accuracy (BA): 0.8922969102859497
+True Positive Rate (TPR) - Recall: 0.8131868243217468
+True Negative Rate (TNR): 0.9714070558547974
+False Negative Rate (FNR): 0.18681319057941437
+False Positive Rate (FPR): 0.028592927381396294
+Precision: 0.8538461327552795
+F1 Score: 0.8330206274986267
+***************************

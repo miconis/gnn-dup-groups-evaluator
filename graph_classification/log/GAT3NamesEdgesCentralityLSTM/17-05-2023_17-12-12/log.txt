@@ -1,0 +1,137 @@
+************************
+Number of groups: 50900
+Number of node features: 768
+Number of prediction classes: 2
+3positives: 12291
+3negatives: 6699
+4to10positives: 11882
+4to10negatives: 12107
+above10positives: 1277
+above10negatives: 6644
+***********************
+GAT3NamesLSTMv2(
+  (conv1): GATConv(
+    (fc): Linear(in_features=823, out_features=13168, bias=False)
+    (feat_drop): Dropout(p=0.2, inplace=False)
+    (attn_drop): Dropout(p=0.2, inplace=False)
+    (leaky_relu): LeakyReLU(negative_slope=0.2)
+  )
+  (conv2): GATConv(
+    (fc): Linear(in_features=823, out_features=13168, bias=False)
+    (feat_drop): Dropout(p=0.2, inplace=False)
+    (attn_drop): Dropout(p=0.2, inplace=False)
+    (leaky_relu): LeakyReLU(negative_slope=0.2)
+  )
+  (conv3): GATConv(
+    (fc): Linear(in_features=823, out_features=13168, bias=False)
+    (feat_drop): Dropout(p=0.2, inplace=False)
+    (attn_drop): Dropout(p=0.2, inplace=False)
+    (leaky_relu): LeakyReLU(negative_slope=0.2)
+  )
+  (global_attention0): GlobalAttentionPooling(
+    (gate_nn): Linear(in_features=823, out_features=1, bias=True)
+  )
+  (global_attention1): GlobalAttentionPooling(
+    (gate_nn): Linear(in_features=823, out_features=1, bias=True)
+  )
+  (global_attention2): GlobalAttentionPooling(
+    (gate_nn): Linear(in_features=823, out_features=1, bias=True)
+  )
+  (global_attention3): GlobalAttentionPooling(
+    (gate_nn): Linear(in_features=823, out_features=1, bias=True)
+  )
+  (lstm): LSTM(823, 823, num_layers=2)
+  (classifier): Linear(in_features=823, out_features=1, bias=True)
+)
+AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0.01
+)
+batch accumulation: 1
+batch size: 64
+EPOCH 001 -> Loss[Train:0.5188; Valid:0.4759] - Accuracy[Train:73.5462; Valid:75.5697]
+EPOCH 002 -> Loss[Train:0.4176; Valid:0.3836] - Accuracy[Train:81.3360; Valid:82.0727]
+EPOCH 003 -> Loss[Train:0.3728; Valid:0.3202] - Accuracy[Train:83.3399; Valid:86.2181]
+EPOCH 004 -> Loss[Train:0.3588; Valid:0.3048] - Accuracy[Train:84.2076; Valid:86.9253]
+EPOCH 005 -> Loss[Train:0.3462; Valid:0.2989] - Accuracy[Train:84.9181; Valid:87.3870]
+EPOCH 006 -> Loss[Train:0.3387; Valid:0.3106] - Accuracy[Train:85.4060; Valid:86.0511]
+EPOCH 007 -> Loss[Train:0.3320; Valid:0.3295] - Accuracy[Train:85.6451; Valid:85.1768]
+EPOCH 008 -> Loss[Train:0.3241; Valid:0.2941] - Accuracy[Train:85.8382; Valid:87.6130]
+EPOCH 009 -> Loss[Train:0.3206; Valid:0.2940] - Accuracy[Train:86.1722; Valid:87.2790]
+EPOCH 010 -> Loss[Train:0.3172; Valid:0.2844] - Accuracy[Train:86.3916; Valid:88.2613]
+EPOCH 011 -> Loss[Train:0.3126; Valid:0.2791] - Accuracy[Train:86.6994; Valid:88.9194]
+EPOCH 012 -> Loss[Train:0.3054; Valid:0.2804] - Accuracy[Train:87.2757; Valid:88.4578]
+EPOCH 013 -> Loss[Train:0.3024; Valid:0.2754] - Accuracy[Train:87.0203; Valid:88.8900]
+EPOCH 014 -> Loss[Train:0.2953; Valid:0.2756] - Accuracy[Train:87.3772; Valid:88.7328]
+EPOCH 015 -> Loss[Train:0.2978; Valid:0.2816] - Accuracy[Train:87.4132; Valid:88.2417]
+EPOCH 016 -> Loss[Train:0.2919; Valid:0.2759] - Accuracy[Train:87.7636; Valid:88.9686]
+EPOCH 017 -> Loss[Train:0.2843; Valid:0.2760] - Accuracy[Train:87.9862; Valid:88.6149]
+EPOCH 018 -> Loss[Train:0.2837; Valid:0.2748] - Accuracy[Train:88.1270; Valid:88.9391]
+EPOCH 019 -> Loss[Train:0.2821; Valid:0.2981] - Accuracy[Train:88.1270; Valid:88.0845]
+EPOCH 020 -> Loss[Train:0.2769; Valid:0.2974] - Accuracy[Train:88.3955; Valid:88.0648]
+EPOCH 021 -> Loss[Train:0.2728; Valid:0.3083] - Accuracy[Train:88.4054; Valid:87.5835]
+EPOCH 022 -> Loss[Train:0.2722; Valid:0.3344] - Accuracy[Train:88.4840; Valid:86.3458]
+EPOCH 023 -> Loss[Train:0.2663; Valid:0.3070] - Accuracy[Train:88.8179; Valid:87.8389]
+EPOCH 024 -> Loss[Train:0.2643; Valid:0.3460] - Accuracy[Train:88.9358; Valid:85.8055]
+EPOCH 025 -> Loss[Train:0.2633; Valid:0.3677] - Accuracy[Train:88.9718; Valid:85.2358]
+EPOCH 026 -> Loss[Train:0.2605; Valid:0.4098] - Accuracy[Train:88.9948; Valid:83.2417]
+EPOCH 027 -> Loss[Train:0.2549; Valid:0.3534] - Accuracy[Train:89.2567; Valid:85.9921]
+EPOCH 028 -> Loss[Train:0.2519; Valid:0.3589] - Accuracy[Train:89.4073; Valid:85.5108]
+EPOCH 029 -> Loss[Train:0.2534; Valid:0.3954] - Accuracy[Train:89.2895; Valid:84.4695]
+EPOCH 030 -> Loss[Train:0.2455; Valid:0.4103] - Accuracy[Train:89.8199; Valid:83.4086]
+EPOCH 031 -> Loss[Train:0.2424; Valid:0.4667] - Accuracy[Train:89.9345; Valid:81.1297]
+EPOCH 032 -> Loss[Train:0.2380; Valid:0.4404] - Accuracy[Train:90.1343; Valid:81.7092]
+EPOCH 033 -> Loss[Train:0.2425; Valid:0.4221] - Accuracy[Train:89.9214; Valid:83.7917]
+EPOCH 034 -> Loss[Train:0.2371; Valid:0.4206] - Accuracy[Train:90.2390; Valid:83.2809]
+EPOCH 035 -> Loss[Train:0.2340; Valid:0.4486] - Accuracy[Train:90.3438; Valid:82.7308]
+EPOCH 036 -> Loss[Train:0.2299; Valid:0.4055] - Accuracy[Train:90.4912; Valid:84.1552]
+EPOCH 037 -> Loss[Train:0.2285; Valid:0.6067] - Accuracy[Train:90.6385; Valid:76.5422]
+*******global*******
+Accuracy (A): 0.8905697464942932
+Balanced Accuracy (BA): 0.8900799751281738
+True Positive Rate (TPR) - Recall: 0.9278510212898254
+True Negative Rate (TNR): 0.8523089289665222
+False Negative Rate (FNR): 0.07214895635843277
+False Positive Rate (FPR): 0.14769108593463898
+Precision: 0.8657256364822388
+F1 Score: 0.8957124352455139
+***************************
+*******3*******
+Accuracy (A): 0.8790575861930847
+Balanced Accuracy (BA): 0.850456953048706
+True Positive Rate (TPR) - Recall: 0.9488843679428101
+True Negative Rate (TNR): 0.752029538154602
+False Negative Rate (FNR): 0.05111561715602875
+False Positive Rate (FPR): 0.24797047674655914
+Precision: 0.8743925094604492
+F1 Score: 0.9101167321205139
+***************************
+*******4to10*******
+Accuracy (A): 0.8764186501502991
+Balanced Accuracy (BA): 0.8758684396743774
+True Positive Rate (TPR) - Recall: 0.9094292521476746
+True Negative Rate (TNR): 0.8423076868057251
+False Negative Rate (FNR): 0.09057071805000305
+False Positive Rate (FPR): 0.1576923131942749
+Precision: 0.8563084006309509
+F1 Score: 0.8820697665214539
+***************************
+*******above10*******
+Accuracy (A): 0.9600499272346497
+Balanced Accuracy (BA): 0.9366291761398315
+True Positive Rate (TPR) - Recall: 0.901098906993866
+True Negative Rate (TNR): 0.9721595048904419
+False Negative Rate (FNR): 0.09890110045671463
+False Positive Rate (FPR): 0.02784048207104206
+Precision: 0.869257926940918
+F1 Score: 0.8848921060562134
+***************************

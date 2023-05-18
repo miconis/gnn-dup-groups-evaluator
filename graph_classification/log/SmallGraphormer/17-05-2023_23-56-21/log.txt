@@ -1,0 +1,268 @@
+************************
+Number of groups: 50900
+Number of node features: 768
+Number of prediction classes: 2
+3positives: 12291
+3negatives: 6699
+4to10positives: 11882
+4to10negatives: 12107
+above10positives: 1277
+above10negatives: 6644
+***********************
+SmallGraphormer(
+  (centrality_encoder): DegreeEncoder(
+    (encoder1): Embedding(101, 768, padding_idx=0)
+    (encoder2): Embedding(101, 768, padding_idx=0)
+  )
+  (encoder): SpatialEncoder(
+    (embedding_table): Embedding(12, 8, padding_idx=0)
+  )
+  (transformer1): GraphormerLayer(
+    (attn): BiasedMHA(
+      (q_proj): Linear(in_features=768, out_features=768, bias=True)
+      (k_proj): Linear(in_features=768, out_features=768, bias=True)
+      (v_proj): Linear(in_features=768, out_features=768, bias=True)
+      (out_proj): Linear(in_features=768, out_features=768, bias=True)
+      (dropout): Dropout(p=0.2, inplace=False)
+    )
+    (ffn): Sequential(
+      (0): Linear(in_features=768, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.2, inplace=False)
+      (3): Linear(in_features=64, out_features=768, bias=True)
+      (4): Dropout(p=0.2, inplace=False)
+    )
+    (dropout): Dropout(p=0.2, inplace=False)
+    (attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (ffn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (transformer2): GraphormerLayer(
+    (attn): BiasedMHA(
+      (q_proj): Linear(in_features=768, out_features=768, bias=True)
+      (k_proj): Linear(in_features=768, out_features=768, bias=True)
+      (v_proj): Linear(in_features=768, out_features=768, bias=True)
+      (out_proj): Linear(in_features=768, out_features=768, bias=True)
+      (dropout): Dropout(p=0.2, inplace=False)
+    )
+    (ffn): Sequential(
+      (0): Linear(in_features=768, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.2, inplace=False)
+      (3): Linear(in_features=64, out_features=768, bias=True)
+      (4): Dropout(p=0.2, inplace=False)
+    )
+    (dropout): Dropout(p=0.2, inplace=False)
+    (attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (ffn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (transformer3): GraphormerLayer(
+    (attn): BiasedMHA(
+      (q_proj): Linear(in_features=768, out_features=768, bias=True)
+      (k_proj): Linear(in_features=768, out_features=768, bias=True)
+      (v_proj): Linear(in_features=768, out_features=768, bias=True)
+      (out_proj): Linear(in_features=768, out_features=768, bias=True)
+      (dropout): Dropout(p=0.2, inplace=False)
+    )
+    (ffn): Sequential(
+      (0): Linear(in_features=768, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.2, inplace=False)
+      (3): Linear(in_features=64, out_features=768, bias=True)
+      (4): Dropout(p=0.2, inplace=False)
+    )
+    (dropout): Dropout(p=0.2, inplace=False)
+    (attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (ffn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (transformer4): GraphormerLayer(
+    (attn): BiasedMHA(
+      (q_proj): Linear(in_features=768, out_features=768, bias=True)
+      (k_proj): Linear(in_features=768, out_features=768, bias=True)
+      (v_proj): Linear(in_features=768, out_features=768, bias=True)
+      (out_proj): Linear(in_features=768, out_features=768, bias=True)
+      (dropout): Dropout(p=0.2, inplace=False)
+    )
+    (ffn): Sequential(
+      (0): Linear(in_features=768, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.2, inplace=False)
+      (3): Linear(in_features=64, out_features=768, bias=True)
+      (4): Dropout(p=0.2, inplace=False)
+    )
+    (dropout): Dropout(p=0.2, inplace=False)
+    (attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (ffn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (transformer5): GraphormerLayer(
+    (attn): BiasedMHA(
+      (q_proj): Linear(in_features=768, out_features=768, bias=True)
+      (k_proj): Linear(in_features=768, out_features=768, bias=True)
+      (v_proj): Linear(in_features=768, out_features=768, bias=True)
+      (out_proj): Linear(in_features=768, out_features=768, bias=True)
+      (dropout): Dropout(p=0.2, inplace=False)
+    )
+    (ffn): Sequential(
+      (0): Linear(in_features=768, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.2, inplace=False)
+      (3): Linear(in_features=64, out_features=768, bias=True)
+      (4): Dropout(p=0.2, inplace=False)
+    )
+    (dropout): Dropout(p=0.2, inplace=False)
+    (attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (ffn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (transformer6): GraphormerLayer(
+    (attn): BiasedMHA(
+      (q_proj): Linear(in_features=768, out_features=768, bias=True)
+      (k_proj): Linear(in_features=768, out_features=768, bias=True)
+      (v_proj): Linear(in_features=768, out_features=768, bias=True)
+      (out_proj): Linear(in_features=768, out_features=768, bias=True)
+      (dropout): Dropout(p=0.2, inplace=False)
+    )
+    (ffn): Sequential(
+      (0): Linear(in_features=768, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.2, inplace=False)
+      (3): Linear(in_features=64, out_features=768, bias=True)
+      (4): Dropout(p=0.2, inplace=False)
+    )
+    (dropout): Dropout(p=0.2, inplace=False)
+    (attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (ffn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (classifier): Linear(in_features=768, out_features=1, bias=True)
+)
+AdamW (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.0001
+    maximize: False
+    weight_decay: 0.01
+)
+batch accumulation: 1
+batch size: 128
+EPOCH 001 -> Loss[Train:0.6202; Valid:0.5924] - Accuracy[Train:64.6005; Valid:67.1218]
+EPOCH 002 -> Loss[Train:0.5955; Valid:0.5852] - Accuracy[Train:66.4800; Valid:67.4656]
+EPOCH 003 -> Loss[Train:0.5888; Valid:0.5830] - Accuracy[Train:67.0236; Valid:67.5540]
+EPOCH 004 -> Loss[Train:0.5839; Valid:0.5835] - Accuracy[Train:67.3248; Valid:67.3674]
+EPOCH 005 -> Loss[Train:0.5826; Valid:0.5841] - Accuracy[Train:67.5802; Valid:67.3084]
+EPOCH 006 -> Loss[Train:0.5790; Valid:0.5843] - Accuracy[Train:67.7832; Valid:67.3379]
+EPOCH 007 -> Loss[Train:0.5786; Valid:0.5819] - Accuracy[Train:67.8389; Valid:67.6326]
+EPOCH 008 -> Loss[Train:0.5769; Valid:0.5890] - Accuracy[Train:67.8651; Valid:67.5835]
+EPOCH 009 -> Loss[Train:0.5758; Valid:0.5841] - Accuracy[Train:67.6555; Valid:67.2495]
+EPOCH 010 -> Loss[Train:0.5763; Valid:0.5897] - Accuracy[Train:68.0943; Valid:67.6916]
+EPOCH 011 -> Loss[Train:0.5758; Valid:0.5918] - Accuracy[Train:68.2089; Valid:67.3183]
+EPOCH 012 -> Loss[Train:0.5734; Valid:0.5928] - Accuracy[Train:67.9895; Valid:67.4067]
+EPOCH 013 -> Loss[Train:0.5729; Valid:0.5878] - Accuracy[Train:68.1696; Valid:67.5639]
+EPOCH 014 -> Loss[Train:0.5725; Valid:0.5956] - Accuracy[Train:68.2220; Valid:67.2299]
+EPOCH 015 -> Loss[Train:0.5710; Valid:0.5882] - Accuracy[Train:68.4021; Valid:67.3084]
+EPOCH 016 -> Loss[Train:0.5710; Valid:0.5991] - Accuracy[Train:68.2842; Valid:67.5540]
+EPOCH 017 -> Loss[Train:0.5693; Valid:0.5923] - Accuracy[Train:68.3988; Valid:67.8291]
+EPOCH 018 -> Loss[Train:0.5671; Valid:0.5940] - Accuracy[Train:68.3563; Valid:67.5246]
+EPOCH 019 -> Loss[Train:0.5653; Valid:0.5904] - Accuracy[Train:68.3923; Valid:67.3772]
+EPOCH 020 -> Loss[Train:0.5666; Valid:0.5827] - Accuracy[Train:68.6902; Valid:68.2220]
+EPOCH 021 -> Loss[Train:0.5647; Valid:0.5767] - Accuracy[Train:68.6968; Valid:68.0452]
+EPOCH 022 -> Loss[Train:0.5615; Valid:0.5815] - Accuracy[Train:68.7426; Valid:67.6326]
+EPOCH 023 -> Loss[Train:0.5590; Valid:0.5807] - Accuracy[Train:68.9718; Valid:68.0452]
+EPOCH 024 -> Loss[Train:0.5591; Valid:0.5781] - Accuracy[Train:68.9424; Valid:68.2711]
+EPOCH 025 -> Loss[Train:0.5566; Valid:0.5789] - Accuracy[Train:68.9653; Valid:68.3988]
+EPOCH 026 -> Loss[Train:0.5547; Valid:0.5819] - Accuracy[Train:69.3582; Valid:68.1238]
+EPOCH 027 -> Loss[Train:0.5508; Valid:0.5661] - Accuracy[Train:69.4008; Valid:68.9784]
+EPOCH 028 -> Loss[Train:0.5502; Valid:0.5670] - Accuracy[Train:69.7773; Valid:68.7328]
+EPOCH 029 -> Loss[Train:0.5460; Valid:0.5615] - Accuracy[Train:69.9443; Valid:69.5972]
+EPOCH 030 -> Loss[Train:0.5413; Valid:0.5567] - Accuracy[Train:70.3864; Valid:69.5972]
+EPOCH 031 -> Loss[Train:0.5364; Valid:0.5588] - Accuracy[Train:70.8513; Valid:70.1473]
+EPOCH 032 -> Loss[Train:0.5342; Valid:0.5465] - Accuracy[Train:71.3654; Valid:71.2083]
+EPOCH 033 -> Loss[Train:0.5260; Valid:0.5503] - Accuracy[Train:71.7878; Valid:72.4165]
+EPOCH 034 -> Loss[Train:0.5174; Valid:0.5452] - Accuracy[Train:72.6293; Valid:71.0314]
+EPOCH 035 -> Loss[Train:0.5080; Valid:0.5291] - Accuracy[Train:73.6739; Valid:72.4558]
+EPOCH 036 -> Loss[Train:0.5045; Valid:0.5343] - Accuracy[Train:73.7557; Valid:72.1807]
+EPOCH 037 -> Loss[Train:0.5022; Valid:0.5205] - Accuracy[Train:74.1519; Valid:73.2809]
+EPOCH 038 -> Loss[Train:0.4928; Valid:0.5065] - Accuracy[Train:74.8494; Valid:74.8232]
+EPOCH 039 -> Loss[Train:0.4859; Valid:0.4995] - Accuracy[Train:75.4322; Valid:75.2849]
+EPOCH 040 -> Loss[Train:0.4802; Valid:0.5113] - Accuracy[Train:75.7597; Valid:74.6758]
+EPOCH 041 -> Loss[Train:0.4758; Valid:0.5038] - Accuracy[Train:76.0478; Valid:75.5403]
+EPOCH 042 -> Loss[Train:0.4750; Valid:0.5104] - Accuracy[Train:76.3196; Valid:73.8605]
+EPOCH 043 -> Loss[Train:0.4709; Valid:0.5208] - Accuracy[Train:76.3851; Valid:73.5756]
+EPOCH 044 -> Loss[Train:0.4666; Valid:0.5092] - Accuracy[Train:76.5881; Valid:75.0884]
+EPOCH 045 -> Loss[Train:0.4628; Valid:0.4921] - Accuracy[Train:77.0727; Valid:76.5324]
+EPOCH 046 -> Loss[Train:0.4574; Valid:0.4896] - Accuracy[Train:77.3772; Valid:76.6601]
+EPOCH 047 -> Loss[Train:0.4548; Valid:0.4843] - Accuracy[Train:77.4296; Valid:76.5815]
+EPOCH 048 -> Loss[Train:0.4491; Valid:0.4994] - Accuracy[Train:77.9633; Valid:75.8251]
+EPOCH 048 -> Loss[Train:0.4498; Valid:0.5026] - Accuracy[Train:77.7570; Valid:75.5206]
+EPOCH 049 -> Loss[Train:0.4467; Valid:0.4962] - Accuracy[Train:78.0190; Valid:76.8173]
+EPOCH 050 -> Loss[Train:0.4419; Valid:0.4961] - Accuracy[Train:78.1860; Valid:76.7485]
+EPOCH 051 -> Loss[Train:0.4413; Valid:0.4988] - Accuracy[Train:78.5527; Valid:76.5422]
+EPOCH 052 -> Loss[Train:0.4356; Valid:0.4902] - Accuracy[Train:78.9031; Valid:76.9352]
+EPOCH 053 -> Loss[Train:0.4320; Valid:0.4961] - Accuracy[Train:78.9227; Valid:76.6012]
+EPOCH 054 -> Loss[Train:0.4312; Valid:0.4965] - Accuracy[Train:79.2240; Valid:76.2574]
+EPOCH 055 -> Loss[Train:0.4289; Valid:0.4943] - Accuracy[Train:79.1683; Valid:76.3065]
+EPOCH 056 -> Loss[Train:0.4274; Valid:0.5044] - Accuracy[Train:79.3844; Valid:76.4047]
+EPOCH 057 -> Loss[Train:0.4252; Valid:0.4989] - Accuracy[Train:79.3058; Valid:77.2495]
+EPOCH 058 -> Loss[Train:0.4176; Valid:0.5188] - Accuracy[Train:80.1670; Valid:76.1100]
+EPOCH 059 -> Loss[Train:0.4186; Valid:0.5023] - Accuracy[Train:80.1048; Valid:76.4637]
+EPOCH 060 -> Loss[Train:0.4188; Valid:0.4967] - Accuracy[Train:79.8494; Valid:76.9155]
+EPOCH 061 -> Loss[Train:0.4179; Valid:0.4952] - Accuracy[Train:79.9116; Valid:76.6306]
+EPOCH 062 -> Loss[Train:0.4128; Valid:0.5122] - Accuracy[Train:80.2980; Valid:76.4244]
+EPOCH 063 -> Loss[Train:0.4115; Valid:0.5106] - Accuracy[Train:80.3504; Valid:77.0334]
+EPOCH 064 -> Loss[Train:0.4104; Valid:0.5304] - Accuracy[Train:80.4453; Valid:76.2868]
+EPOCH 065 -> Loss[Train:0.4076; Valid:0.5180] - Accuracy[Train:80.5796; Valid:76.1198]
+EPOCH 066 -> Loss[Train:0.4081; Valid:0.5037] - Accuracy[Train:80.7597; Valid:76.7485]
+EPOCH 067 -> Loss[Train:0.4065; Valid:0.5393] - Accuracy[Train:80.7073; Valid:75.9037]
+EPOCH 068 -> Loss[Train:0.4022; Valid:0.5026] - Accuracy[Train:81.0216; Valid:76.8075]
+EPOCH 069 -> Loss[Train:0.3998; Valid:0.5020] - Accuracy[Train:81.0642; Valid:76.6110]
+EPOCH 070 -> Loss[Train:0.3986; Valid:0.5048] - Accuracy[Train:81.2508; Valid:77.0039]
+EPOCH 071 -> Loss[Train:0.3964; Valid:0.5063] - Accuracy[Train:81.2246; Valid:76.6896]
+EPOCH 072 -> Loss[Train:0.3911; Valid:0.5310] - Accuracy[Train:81.7420; Valid:76.0609]
+EPOCH 073 -> Loss[Train:0.3925; Valid:0.5244] - Accuracy[Train:81.5553; Valid:75.9921]
+EPOCH 074 -> Loss[Train:0.3936; Valid:0.5385] - Accuracy[Train:81.6568; Valid:76.1395]
+EPOCH 075 -> Loss[Train:0.3885; Valid:0.5228] - Accuracy[Train:81.5914; Valid:76.6012]
+EPOCH 076 -> Loss[Train:0.3844; Valid:0.5366] - Accuracy[Train:82.1153; Valid:76.2181]
+EPOCH 077 -> Loss[Train:0.3828; Valid:0.5194] - Accuracy[Train:82.1644; Valid:76.7780]
+*******global*******
+Accuracy (A): 0.7591355443000793
+Balanced Accuracy (BA): 0.7579382658004761
+True Positive Rate (TPR) - Recall: 0.8502715229988098
+True Negative Rate (TNR): 0.6656050682067871
+False Negative Rate (FNR): 0.14972847700119019
+False Positive Rate (FPR): 0.3343949019908905
+Precision: 0.7229551672935486
+F1 Score: 0.7814616560935974
+***************************
+*******3*******
+Accuracy (A): 0.746073305606842
+Balanced Accuracy (BA): 0.6772931814193726
+True Positive Rate (TPR) - Recall: 0.9139959216117859
+True Negative Rate (TNR): 0.44059041142463684
+False Negative Rate (FNR): 0.08600405603647232
+False Positive Rate (FPR): 0.5594096183776855
+Precision: 0.7482563853263855
+F1 Score: 0.8228633999824524
+***************************
+*******4to10*******
+Accuracy (A): 0.7219420075416565
+Balanced Accuracy (BA): 0.7203887701034546
+True Positive Rate (TPR) - Recall: 0.8151364922523499
+True Negative Rate (TNR): 0.6256410479545593
+False Negative Rate (FNR): 0.18486352264881134
+False Positive Rate (FPR): 0.37435898184776306
+Precision: 0.692307710647583
+F1 Score: 0.7487179636955261
+***************************
+*******above10*******
+Accuracy (A): 0.9007490873336792
+Balanced Accuracy (BA): 0.7757340669631958
+True Positive Rate (TPR) - Recall: 0.5860806107521057
+True Negative Rate (TNR): 0.9653875231742859
+False Negative Rate (FNR): 0.4139194190502167
+False Positive Rate (FPR): 0.034612491726875305
+Precision: 0.7766990065574646
+F1 Score: 0.668058454990387
+***************************
