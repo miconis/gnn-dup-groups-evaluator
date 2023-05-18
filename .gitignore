@@ -1,3 +1,4 @@
 .idea
-gnn/graph_classification/pubmed_dataset/*
+graph_classification/pubmed_dataset/*
 venv
+graph_classification/log/*/*/*.pth
