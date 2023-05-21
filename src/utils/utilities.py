@@ -1,7 +1,6 @@
 import glob
 import os.path
 import matplotlib.pyplot as plt
-import numpy as np
 import torch
 
 
@@ -113,4 +112,3 @@ def log_metrics(logdir, classname, metrics):
     with open(logdir + "log.txt", "a") as file:
         print(line)
         file.write(line)
-
