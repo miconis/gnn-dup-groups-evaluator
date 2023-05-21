@@ -1,11 +1,13 @@
+"""Module providing datasets api"""
+
 import string
 import unicodedata
+import json
+import os
 import jaro
 from networkx.algorithms.centrality import betweenness_centrality
 import numpy as np
-import os
 from dgl.data import DGLDataset
-import json
 import torch
 from dgl.data.utils import save_graphs, load_graphs
 import dgl
@@ -13,9 +15,9 @@ import dgl
 # from pyspark.sql import SparkSession
 
 
-all_letters = string.ascii_letters + ".,-"
+ALL_LETTERS = string.ascii_letters + ".,-"
 
-def isCorrect(x):
+def is_correct(x):
     """
     Check if a group is correct (based on the orcids)
     """
@@ -25,7 +27,7 @@ def isCorrect(x):
     return len(set(orcids)) == 1
 
 
-def hasUniqueAuthors(group):
+def has_unique_authors(group):
     """
     Check if all the authors in the group have different ids
     """
@@ -33,37 +35,47 @@ def hasUniqueAuthors(group):
     return len(ids) == len(set(ids))
 
 
-def isGroup(group):
+def is_group(group):
     """
     Check if the group is actually a graph (more than 2 nodes)
     """
-    if len(group['docs']) > 2:
-        return True
-    return False
+    return len(group['docs']) > 2
 
 
-def unicodeToAscii(s):
+def unicode_to_ascii(s):
+    """
+    return ascii from unicode
+    """
     return ''.join(
         c for c in unicodedata.normalize('NFD', s)
         if unicodedata.category(c) != 'Mn'
-        and c in all_letters
+        and c in ALL_LETTERS
     )
 
 
-def letterIndex(letter):
-    return all_letters.find(letter)
+def letter_index(letter):
+    """
+    return letter index
+    """
+    return ALL_LETTERS.find(letter)
 
 
-def letterToTensor(letter):
-    tensor = torch.zeros(1, len(all_letters))
-    tensor[0][letterIndex(letter)] = 1
+def letter_to_tensor(letter):
+    """
+    return tensor from letter
+    """
+    tensor = torch.zeros(1, len(ALL_LETTERS))
+    tensor[0][letter_index(letter)] = 1
     return tensor
 
 
-def nameToTensor(name):
-    tensor = torch.zeros(len(all_letters), len(name))
-    for li, letter in enumerate(name):
-        tensor[letterIndex(letter)][li] = 1
+def name_to_tensor(name):
+    """
+    return name from tensor
+    """
+    tensor = torch.zeros(len(ALL_LETTERS), len(name))
+    for idx, letter in enumerate(name):
+        tensor[letter_index(letter)][idx] = 1
     return tensor
 
 class DedupGroupsDataset(DGLDataset):
@@ -96,7 +108,7 @@ class DedupGroupsDataset(DGLDataset):
         self.dedup_groups_path = dedup_groups_path
         self.graphs = []
         self.labels = []
-        super(DedupGroupsDataset, self).__init__(name=dataset_name,
+        super().__init__(name=dataset_name,
                                                  url=url,
                                                  raw_dir=raw_dir,
                                                  save_dir=save_dir,
@@ -107,17 +119,16 @@ class DedupGroupsDataset(DGLDataset):
         """
         Download the raw data to local disk
         """
-        pass
         print("Downloading data!")
         # groups = self.sc.textFile(self.dedup_groups_path).map(json.loads)
         # # filter out groups with duplicated authors (same entity with same id)
-        # groups = groups.filter(hasUniqueAuthors)
+        # groups = groups.filter(has_unique_authors)
         # # filter out groups with only 2 authors (they are not groups!)
-        # groups = groups.filter(isGroup)
+        # groups = groups.filter(is_group)
         #
         # # make the dataset balanced
-        # correct_groups = groups.filter(isCorrect)
-        # wrong_groups = groups.filter(lambda x: not isCorrect(x))
+        # correct_groups = groups.filter(is_correct)
+        # wrong_groups = groups.filter(lambda x: not is_correct(x))
         #
         # # calculate the cardinality of the class with less elements
         # size = min(correct_groups.count(), wrong_groups.count())
@@ -137,7 +148,6 @@ class DedupGroupsDataset(DGLDataset):
         """
         Process raw data to graphs and labels
         """
-        pass
         with open(self.raw_dir + "/" + self.name + "/part-00000") as groups:
             for group in groups:
                 try:
@@ -145,12 +155,15 @@ class DedupGroupsDataset(DGLDataset):
                     graph, label = self.dedup_group_to_graph(json_group)
                     self.graphs.append(graph)
                     self.labels.append(label)
-                except Exception as e:
-                    print(e)
+                except Exception as exception:
+                    print(exception)
                     print(group)
                     exit()
 
     def dedup_group_to_graph(self, x):
+        """
+        return DGLGraphs from groups
+        """
         orcids = [json.loads(doc)['orcid'] for doc in x['docs']]
         ids = [json.loads(doc)['id'] for doc in x['docs']]
         label = 1 if len(set(orcids)) == 1 else 0
@@ -158,7 +171,7 @@ class DedupGroupsDataset(DGLDataset):
         node_feats = self.get_node_features_matrix(ids, x['docs'])
         edge_index = self.get_edges(ids, x['simrels'])
 
-        names = list(map(unicodeToAscii, [json.loads(doc)["fullname"] for doc in x["docs"]]))
+        names = list(map(unicode_to_ascii, [json.loads(doc)["fullname"] for doc in x["docs"]]))
         group_names = self.get_group_names_tensor(names)
 
         g = dgl.graph((edge_index[0], edge_index[1]))
@@ -187,9 +200,9 @@ class DedupGroupsDataset(DGLDataset):
         """
         Produces the tensor of the names encoding
         """
-        tensor = torch.zeros(len(names), len(all_letters))
-        for i in range(len(names)):
-            tensor[i, :] = nameToTensor(names[i]).sum(dim=1)
+        tensor = torch.zeros(len(names), len(ALL_LETTERS))
+        for i, _ in enumerate(names):
+            tensor[i, :] = name_to_tensor(names[i]).sum(dim=1)
         return tensor
 
 
@@ -206,7 +219,7 @@ class DedupGroupsDataset(DGLDataset):
         return torch.tensor(weights)
 
 
-    def get_node_features_matrix(self, ids, docs):
+    def get_node_features_matrix(self, _, docs):
         """
         Produces the node features: an NxF matrix (N:number of nodes, F: number of features)
         """
@@ -229,7 +242,7 @@ class DedupGroupsDataset(DGLDataset):
                 i = ids.index(edge['source'])
                 j = ids.index(edge['target'])
                 edge_indices += [[i, j], [j, i]]
-            except:
+            except Exception:
                 print("error in creating edge")
 
         edge_indices = torch.tensor(edge_indices)
@@ -237,6 +250,7 @@ class DedupGroupsDataset(DGLDataset):
         return edge_indices
 
     def get_label(self):
+        """return labels"""
         labels = np.asarray([self.labels])
         return {"glabel": torch.tensor(labels, dtype=torch.int64)}
 
@@ -262,7 +276,7 @@ class DedupGroupsDataset(DGLDataset):
         """
         Return the number of features extracted from the names in the author list
         """
-        return len(all_letters)
+        return len(ALL_LETTERS)
 
     def __num_classes__(self):
         """
@@ -275,7 +289,7 @@ class DedupGroupsDataset(DGLDataset):
         Return statistics on the dataset
         """
         counters = {"3positives": 0, "3negatives": 0, "4to10positives": 0, "4to10negatives": 0, "above10positives": 0, "above10negatives": 0}
-        for i in range(len(self.graphs)):
+        for i, _ in enumerate(self.graphs):
             if self.graphs[i].number_of_nodes() == 3:
                 if self.labels[i] == 1:
                     counters["3positives"] += 1

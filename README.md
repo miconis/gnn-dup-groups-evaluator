@@ -23,3 +23,13 @@ Once the most promising direction have been identified in the GAT, the model is 
 The best model is proved to be the GAT3NamesEdgesCentralityLSTM with ~89% of accuracy on the test set.
 
 The entire code in this release have been developed using PyTorch (https://pytorch.org/) and the DGL library for Graph Neural Networks (https://www.dgl.ai/), while results of the experiments have been visualized using Tensorboard (https://www.tensorflow.org/tensorboard).
+
+## Installation
+```bash
+pip install -r requirements.txt
+```
+## Running
+```bash
+cd src
+python main.py 
+```

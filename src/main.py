@@ -1,48 +1,47 @@
-from dgl.dataloading import GraphDataLoader
-from datasets import DedupGroupsDataset
-from dgl.data.utils import split_dataset
-from models import *
-from utilities import *
-from torch.utils.tensorboard import SummaryWriter
+"""Entrypoint"""
+import os
 from datetime import datetime
+
+import torch
+import numpy as np
+
+from dgl.dataloading import GraphDataLoader
+from dgl.data.utils import split_dataset
+from torch.utils.tensorboard import SummaryWriter
 from torchmetrics.classification import BinaryConfusionMatrix
 
+from utils.datasets import DedupGroupsDataset
+from utils.models import *
+from utils.utilities import *
+from utils.config import *
 
 torch.manual_seed(42)
 os.environ['TORCH'] = torch.__version__
-device = "cuda" if torch.cuda.is_available() else "cpu"
+checkpoint_model = f"./log/SmallGraphormer/17-05-2023_23-56-21/SmallGraphormer-epoch{START_EPOCH-1}.ckpt.pth"
 current_date = datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
 min_valid_loss = np.inf
 best_model_path = ""
 
-# parameters
-epochs = 400
-batch_size = 64
-start_epoch = 1
-batch_accum = 1
-learning_rate = 1e-4
-checkpoint_model = f"./log/SmallGraphormer/17-05-2023_23-56-21/SmallGraphormer-epoch{start_epoch-1}.ckpt.pth"
-early_stopping = 20
 
 # creating the dataset
 dataset = DedupGroupsDataset(dataset_name="groups",
-                             raw_dir="pubmed_dataset/raw",
-                             dedup_groups_path="pubmed_dataset/groupentities",
-                             save_dir="pubmed_dataset/processed")
+                             raw_dir="../pubmed_dataset/raw",
+                             dedup_groups_path="../pubmed_dataset/groupentities",
+                             save_dir="../pubmed_dataset/processed")
 
 dataset_splittings = split_dataset(dataset=dataset, frac_list=[0.6, 0.2, 0.2], shuffle=True, random_state=42)
 
-train_loader = GraphDataLoader(dataset_splittings[0], batch_size=batch_size)
-valid_loader = GraphDataLoader(dataset_splittings[1], batch_size=batch_size)
-test_loader = GraphDataLoader(dataset_splittings[2], batch_size=batch_size)
+train_loader = GraphDataLoader(dataset_splittings[0], batch_size=BATCH_SIZE)
+valid_loader = GraphDataLoader(dataset_splittings[1], batch_size=BATCH_SIZE)
+test_loader = GraphDataLoader(dataset_splittings[2], batch_size=BATCH_SIZE)
 train_size = len(train_loader.dataset)
 valid_size = len(valid_loader.dataset)
 test_size = len(test_loader.dataset)
 
 # GCN MODELS
-# model = GCN3(num_features=dataset.__num_abstract_features__(),
-#              hidden_dim=dataset.__num_abstract_features__(),
-#              dropout=0.2)
+model = GCN3(num_features=dataset.__num_abstract_features__(),
+             hidden_dim=dataset.__num_abstract_features__(),
+             dropout=0.2)
 # model = GCN3EdgeWeight(num_features=dataset.__num_abstract_features__(),
 #                        hidden_dim=dataset.__num_abstract_features__(),
 #                        dropout=0.2)
@@ -64,13 +63,13 @@ test_size = len(test_loader.dataset)
 #                  attn_drop=0.2,
 #                  num_layers=2,
 #                  num_heads=16)
-model = GAT3NamesLSTM(num_features=dataset.__num_abstract_features__() + dataset.__num_names_features__(),
-                      hidden_dim=dataset.__num_abstract_features__() + dataset.__num_names_features__(),
-                      dropout=0.2,
-                      feat_drop=0.2,
-                      attn_drop=0.2,
-                      num_layers=2,
-                      num_heads=16)
+# model = GAT3NamesLSTM(num_features=dataset.__num_abstract_features__() + dataset.__num_names_features__(),
+#                       hidden_dim=dataset.__num_abstract_features__() + dataset.__num_names_features__(),
+#                       dropout=0.2,
+#                       feat_drop=0.2,
+#                       attn_drop=0.2,
+#                       num_layers=2,
+#                       num_heads=16)
 # model = GAT3NamesEdgesLSTM(num_features=dataset.__num_abstract_features__() + dataset.__num_names_features__(),
 #                            hidden_dim=dataset.__num_abstract_features__() + dataset.__num_names_features__(),
 #                            dropout=0.2,
@@ -98,21 +97,21 @@ train_writer = SummaryWriter(log_dir=f"./log/{model.__class__.__name__}/{current
 valid_writer = SummaryWriter(log_dir=f"./log/{model.__class__.__name__}/{current_date}/validation")
 test_writer = SummaryWriter(log_dir=f"./log/{model.__class__.__name__}/{current_date}/test")
 logdir = f"./log/{model.__class__.__name__}/{current_date}/"
-model = model.to(device)
+model = model.to(DEVICE)
 
-optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
 loss_criterion = F.binary_cross_entropy
 
 # log info
 log_dataset_info(logdir, dataset)
-log_config(logdir, model, optimizer, batch_accum, batch_size)
+log_config(logdir, model, optimizer, BATCH_ACCUM, BATCH_SIZE)
 
-if start_epoch > 1:
+if START_EPOCH > 1:
     print("Resuming from checkpoint")
     load_checkpoint(model, optimizer, checkpoint_model)
 
-counter = early_stopping
-for epoch in range(start_epoch, epochs + 1):
+counter = EARLY_STOPPING
+for epoch in range(START_EPOCH, EPOCHS + 1):
     # TRAINING
     train_loss = 0.0
     correct = 0
@@ -120,15 +119,15 @@ for epoch in range(start_epoch, epochs + 1):
     accum_iter = 0
     for batched_graph, labels in train_loader:
         accum_iter += 1
-        batched_graph, labels = batched_graph.to(device), labels.to(device)
+        batched_graph, labels = batched_graph.to(DEVICE), labels.to(DEVICE)
         nodes_features = batched_graph.ndata["features"]
         prediction = model(batched_graph, nodes_features).squeeze()
         correct += (prediction.round() == labels).sum().item()
         loss = loss_criterion(prediction, labels.float())
         train_loss += loss.item() * batched_graph.batch_size
-        loss = loss / batch_accum
+        loss = loss / BATCH_ACCUM
         loss.backward()
-        if accum_iter == batch_accum:
+        if accum_iter == BATCH_ACCUM:
             accum_iter = 0
             optimizer.step()
             optimizer.zero_grad()
@@ -141,7 +140,7 @@ for epoch in range(start_epoch, epochs + 1):
     correct = 0
     model.eval()
     for batched_graph, labels in valid_loader:
-        batched_graph, labels = batched_graph.to(device), labels.to(device)
+        batched_graph, labels = batched_graph.to(DEVICE), labels.to(DEVICE)
         nodes_features = batched_graph.ndata["features"]
         prediction = model(batched_graph, nodes_features).squeeze()
         correct += (prediction.round() == labels).sum().item()
@@ -155,7 +154,7 @@ for epoch in range(start_epoch, epochs + 1):
     train_writer.flush()
     valid_writer.flush()
     if min_valid_loss >= valid_loss:
-        counter = early_stopping
+        counter = EARLY_STOPPING
         min_valid_loss = valid_loss
         best_model_path = save_checkpoint(model, optimizer, epoch, logdir)
     counter -= 1
@@ -174,7 +173,7 @@ test_classes = []
 test_predictions = []
 test_labels = []
 for batched_graph, labels in test_loader:
-    batched_graph, labels = batched_graph.to(device), labels.to(device)
+    batched_graph, labels = batched_graph.to(DEVICE), labels.to(DEVICE)
     test_classes.extend([g.number_of_nodes() for g in dgl.unbatch(batched_graph)])
     test_labels.extend(labels)
     test_predictions.extend([pred[0] for pred in model(batched_graph, batched_graph.ndata["features"]).cpu().detach().numpy().tolist()])
