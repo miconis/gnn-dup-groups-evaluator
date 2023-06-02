@@ -12,7 +12,7 @@ Once the close mesh stage have been done, the following features have been extra
 - a pretrained BERT model described to extract 768-sized feature vectors from the abstract
 - a custom encoder (so-called Bag Of Letters) to extract 55-sized feature vectors for the author name
 
-The dataset resulting from this procedure is available at: *LINK TO THE DATASET (to-be-defined)*
+The dataset resulting from this procedure is available at: dx.doi.org/10.5281/zenodo.7997279
 
 The code in this release tests 3 different base architectures:
 - 3-layered Graph Convolutional Network (GCN)
