@@ -1,6 +1,6 @@
-# Deduplication groups evaluator
+# Evaluation of "groups of duplicates" created by a traditional disambiguation algorithm
 
-This tool is a set of tests on different Graph Neural Networkds for the activity of the deduplication groups evaluation.
+This tool is a set of tests on different Graph Neural Networks for the activity of the deduplication groups evaluation.
 The purpose of the network is to evaluate the goodness (in terms of percentage - 0% bad group, 100% perfect group) of a group created by an automatic algorithm for the disambiguation of entity.
 The code presents the use case of Author Name Disambiguation, where groups are created by a pairwise comparison stage and a final close mesh stage to put all the equivalent authors in the same group of entities.
 
